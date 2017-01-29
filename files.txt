@@ -1,0 +1,6 @@
+instruction_memory.v
+cpu.v
+alu.v
+register.v
+registers_array.v
+testbench.v
