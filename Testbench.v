@@ -5,8 +5,6 @@ module mips_testbench();
 reg clock;
 reg reset;
 reg shutdown;
-wire [31:0]mem_sel;
-wire [31:0]mem_out;
 
 // Инициализируем переменные
 initial begin
@@ -15,9 +13,9 @@ initial begin
   clock = 0;       // Начальное значнеие для clock
   reset = 0;       // Начальное значнеие для reset
   // Тактирование
-  #2 reset = 0;    // Установка сброса
-  #3 reset = 1;   // Снятие сброса
-  #496 reset = 0;    // Установка сброса
+  #1 reset = 1;    // Установка сброса
+  #4 reset = 0;   // Снятие сброса
+  #496 reset = 1;    // Установка сброса
   #500 shutdown = 1;    // Завершение
 
 end
@@ -33,6 +31,10 @@ always @(posedge shutdown) begin
 end
 
 // Присоединяем модули
-instruction_memory instr_mem(.sel(mem_sel), .out(mem_out), .clock(clock));
+wire [31:0]mem_sel;
+wire [31:0]mem_out;
+
+instruction_memory mem (.sel(mem_sel), .out(mem_out), .clock(clock));
+cpu_module cpu (.instr_in(mem_out), .instr_sel(mem_sel), .clock(clock), .reset(reset));
 
 endmodule

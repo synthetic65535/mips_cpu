@@ -6,7 +6,7 @@ module register (
   input clock
   );
   
-  always @(posedge clock)
+  always @(negedge clock) // Чтение данных по фронту clock, запись - по спаду
   begin
     if (write) out <= in;
   end
