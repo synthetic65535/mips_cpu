@@ -1,10 +1,9 @@
 `timescale 1ns/1ps
 
 module mips_testbench();
-// Входы делаем регистрами, а выходы - проводами
+
 reg clock;
 reg reset;
-reg shutdown;
 
 // Инициализируем переменные
 initial begin
@@ -14,20 +13,14 @@ initial begin
   reset = 0;       // Начальное значнеие для reset
   // Тактирование
   #1 reset = 1;    // Установка сброса
-  #4 reset = 0;   // Снятие сброса
-  #496 reset = 1;    // Установка сброса
-  #500 shutdown = 1;    // Завершение
-
+  #4 reset = 0;    // Снятие сброса
+  #496 reset = 1;  // Установка сброса
+  #500 $finish;    // Конец симуляции
 end
 
 // Тактовый генератор
 always begin
   #2 clock = ~clock;
-end
-
-// Конец симуляции
-always @(posedge shutdown) begin
-  $finish;
 end
 
 // Присоединяем модули
