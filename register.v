@@ -1,9 +1,9 @@
 
 module register
-  #(parameter WIDH = 32)
+  #(parameter WIDTH = 32)
   (
-  input [WIDH-1:0] in,
-  output reg [WIDH-1:0] out,
+  input [WIDTH-1:0] in,
+  output reg [WIDTH-1:0] out,
   input write,
   input clock
   );
