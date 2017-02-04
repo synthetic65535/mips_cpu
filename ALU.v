@@ -3,20 +3,24 @@ module alu_module (
   input [31:0] int1,
   input [31:0] int2,
   input [5:0] opcode,
-  output reg [31:0] out, // reg is bad idea
+  output [31:0] out,
   output zero
   );
  
   `include "asm_codes.vh"
-  
-  always @(int1, int2, opcode)
-  begin
-  	case (opcode)
-  	ALU_ADD: out <= int1 + int2;
-  	ALU_SUB: out <= int1 - int2;
-  	default: out <= 0;
-  	endcase
-  end
+
+  assign out = 
+  (opcode == ALU_ADD) ? int1 + int2 :
+  (opcode == ALU_SUB) ? int1 - int2 :
+  (opcode == ALU_SHL) ? int1 << int2 :
+  (opcode == ALU_SHR) ? int1 >> int2 :
+  (opcode == ALU_SRA) ? int1 >>> int2 :
+  (opcode == ALU_SLT) ? int1 < int2 :
+  (opcode == ALU_AND) ? int1 & int2 :
+  (opcode == ALU_XOR) ? int1 ^ int2 :
+  (opcode == ALU_NOR) ? ~(int1 | int2) :
+  (opcode == ALU_OR) ? int1 | int2 :
+  32'd0;
 
   assign zero = (out == 0);
 

@@ -1,7 +1,9 @@
 
-module register (
-  input [31:0] in,
-  output reg [31:0] out,
+module register
+  #(parameter WIDH = 32)
+  (
+  input [WIDH-1:0] in,
+  output reg [WIDH-1:0] out,
   input write,
   input clock
   );

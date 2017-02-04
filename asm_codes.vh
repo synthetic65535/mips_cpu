@@ -1,16 +1,37 @@
-parameter OP_R = 6'b000000;
-parameter OP_ADDI = 6'b001000;
-parameter OP_BEQ = 6'b000100;
-parameter OP_BNE = 6'b000101;
-parameter OP_LW = 6'b100011;
-parameter OP_SW = 6'b101011;
+parameter OP_R =     6'b000000;
+parameter OP_ADDI =  6'b001000;
+parameter OP_ADDIU = 6'b001001;
+parameter OP_ANDI =  6'b001100;
+parameter OP_ORI =   6'b001101;
+parameter OP_SLTI =  6'b001010;
+parameter OP_SLTIU = 6'b001011;
+parameter OP_BEQ =   6'b000100;
+parameter OP_BNE =   6'b000101;
+parameter OP_J =     6'b000010;
+parameter OP_LW =    6'b100011;
+parameter OP_SW =    6'b101011;
 
-parameter OPR_NOP = 6'b000000;
 parameter OPR_ADD = 6'b100000;
 parameter OPR_SUB = 6'b100010;
+parameter OPR_SLL = 6'b000000;
+parameter OPR_SRL = 6'b000010;
+parameter OPR_SRA = 6'b000011;
+parameter OPR_SLT = 6'b101010;
+parameter OPR_AND = 6'b100100;
+parameter OPR_XOR = 6'b100110;
+parameter OPR_NOR = 6'b100111;
+parameter OPR_OR = 6'b100101;
 
 parameter ALU_ADD = 8'd00;
 parameter ALU_SUB = 8'd01;
+parameter ALU_SHL = 8'd02;
+parameter ALU_SHR = 8'd03;
+parameter ALU_SRA = 8'd04;
+parameter ALU_SLT = 8'd05;
+parameter ALU_AND = 8'd06;
+parameter ALU_XOR = 8'd07;
+parameter ALU_NOR = 8'd08;
+parameter ALU_OR = 8'd09;
 
 parameter R00 = 5'd00;
 parameter R01 = 5'd01;
@@ -44,3 +65,5 @@ parameter R28 = 5'd28;
 parameter R29 = 5'd29;
 parameter R30 = 5'd30;
 parameter R31 = 5'd31;
+
+parameter SHAMT0 = 5'd0;
